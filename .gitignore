@@ -1,0 +1,59 @@
+# macOS
+.DS_Store
+
+# Claude Code 関連
+.claude/
+.playwright-mcp/
+
+# 別案件のファイル
+hospital-lp.html
+business-card-preview.html
+business-plan.html
+business-plan.pdf
+hannan-proposal.html
+hannan-proposal.pdf
+line-autoresponse-report.html
+line-autoresponse-report.pdf
+generate_richmenu.py
+
+# 別案件のスクリーンショット・画像
+after-*.png
+all-responses.png
+autoresponse-*.png
+check-*.png
+coalition-*.png
+coconala-*.png
+coconala-*.txt
+coupon-*.png
+current-*.png
+final-*.png
+greeting-*.png
+hero_hq.png
+line-login-qr.png
+map.png
+messaging-api-settings.png
+preview-*.png
+research-*.png
+response-settings*.png
+richmenu-*.png
+richmenu-*.pn
+スクリーンショット*.png
+
+# LINE関連スクリーンショット
+richmenu_liberte_grit.png
+save-dialog.png
+search-hp-seisaku.txt
+shopcard-*.png
+slide-overview.png
+sns-quest.html
+stepmessage-*.png
+template-*.png
+upload-*.png
+v2-overview.png
+verify-*.png
+voucher-*.png
+webhook-*.png
+
+# その他
+Untitled
+CLAUDE.md
