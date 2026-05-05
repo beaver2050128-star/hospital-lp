@@ -1898,9 +1898,10 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(7, 8, 15, 0.72);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--gray-4);
     transition: background 0.4s var(--ease-snap), box-shadow 0.4s var(--ease-snap), padding 0.4s var(--ease-snap);
     animation: headerDrop 1s var(--ease-snap) both;
   }
@@ -1909,8 +1910,8 @@
     to   { transform: translateY(0);     opacity: 1; }
   }
   .site-header.scrolled {
-    background: rgba(255,255,255,0.96);
-    box-shadow: 0 1px 0 rgba(20,40,80,0.05), 0 4px 20px rgba(20,40,80,0.04);
+    background: rgba(7, 8, 15, 0.92);
+    box-shadow: 0 1px 0 var(--gray-4), 0 4px 20px rgba(0, 0, 0, 0.25);
   }
   .site-header.scrolled .header-inner {
     padding-top: 8px;
@@ -2354,7 +2355,7 @@
     margin: 0 auto;
   }
   .problem-card {
-    background: rgba(255,255,255,0.85);
+    background: rgba(15,18,30,0.78);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(234,240,244,0.8);
@@ -2610,14 +2611,14 @@
     align-items: flex-start;
     gap: 28px;
     padding: 32px 28px;
-    background: rgba(255,255,255,0.85);
+    background: rgba(15,18,30,0.78);
     backdrop-filter: blur(4px);
     border-radius: 6px;
     border: 1px solid rgba(230,234,239,0.7);
     transition: all .3s;
   }
     gap: 16px;
-    background: rgba(255,255,255,0.85);
+    background: rgba(15,18,30,0.78);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(234,240,244,0.8);
@@ -2681,7 +2682,7 @@
     margin: 0 auto;
   }
   .diff-card {
-    background: rgba(255,255,255,0.85);
+    background: rgba(15,18,30,0.78);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(234,240,244,0.8);
@@ -2877,7 +2878,7 @@
     font-size: 22px;
     font-weight: 400;
     color: var(--teal);
-    background: rgba(255,255,255,0.85);
+    background: rgba(15,18,30,0.78);
     font-family: var(--font-serif-en);
     font-style: italic;
     box-shadow: 0 0 0 0 rgba(43, 196, 192, 0.5), inset 0 0 12px rgba(43, 196, 192, 0.05);
@@ -2923,7 +2924,7 @@
   .faq-list {
     max-width: 720px;
     margin: 0 auto;
-    background: rgba(255,255,255,0.7);
+    background: rgba(15,18,30,0.7);
     border-radius: 8px;
     padding: 0 16px;
     backdrop-filter: blur(4px);
@@ -3056,7 +3057,7 @@
 
   /* ============ FOOTER ============ */
   .site-footer {
-    background: rgba(255,255,255,0.85);
+    background: rgba(15,18,30,0.78);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     padding: 50px 40px 26px;
@@ -3169,7 +3170,7 @@
   .mobile-menu {
     position: fixed;
     inset: 0;
-    background: rgba(255,255,255,0.97);
+    background: rgba(7,8,15,0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 55;
