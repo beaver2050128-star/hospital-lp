@@ -4449,6 +4449,15 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
   fadeEls.forEach(el => observer.observe(el));
+
+  /* === 試作段階：全リンクのクリック動作を無効化（タップしても何も起きない） === */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
 </script>
 
 </body>
