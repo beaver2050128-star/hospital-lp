@@ -30,11 +30,12 @@
     /* 旧 ink (暗テキスト) → 明色テキスト（暗背景に反転） */
     --ink: #f0f2ff;
     --ink-2: #cfd4dc;
-    /* グレイ階層を白の透明度に変更（暗背景上で機能する） */
-    --gray-1: rgba(240, 242, 255, 0.55);
-    --gray-2: rgba(240, 242, 255, 0.42);
-    --gray-3: rgba(255, 255, 255, 0.18);
-    --gray-4: rgba(255, 255, 255, 0.09);
+    /* グレイ階層を白の透明度に変更（暗背景上で機能する）
+       薄すぎると暗背景に溶けるので、可読性確保のため透明度を高めに調整 */
+    --gray-1: rgba(240, 242, 255, 0.82);
+    --gray-2: rgba(240, 242, 255, 0.65);
+    --gray-3: rgba(255, 255, 255, 0.22);
+    --gray-4: rgba(255, 255, 255, 0.12);
     --gray-5: #111327;
     /* ベース／セクション背景：深いブルーブラック */
     --bg-base: #07080f;
@@ -2701,7 +2702,7 @@
     background: rgba(15,18,30,0.78);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(234,240,244,0.8);
+    border: 1px solid var(--gray-3);
     border-radius: 10px;
     padding: 32px 22px 28px;
     text-align: center;
@@ -2709,7 +2710,7 @@
   }
   .diff-card:hover {
     border-color: var(--teal-light);
-    box-shadow: 0 8px 24px rgba(43,196,192,0.08);
+    box-shadow: 0 8px 24px rgba(19,71,245,0.18);
   }
   .diff-icon {
     width: 46px;
@@ -2725,7 +2726,7 @@
     line-height: 1.6;
     margin: 0 auto 16px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #d8dee5;
+    border-bottom: 1px solid var(--gray-3);
     width: 80%;
     min-height: 42px;
     display: flex;
