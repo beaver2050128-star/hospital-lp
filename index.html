@@ -342,47 +342,54 @@
     .section-tag { padding: 10px 18px; font-size: 11px; letter-spacing: 0.15em; }
   }
 
-  /* ============ 手書き風"ぐるっ"丸囲みマーク（完全版） ============ */
+  /* ============ ハイライトマーカー＋下線（teal アクセント） ============ */
   .circle-mark {
     position: relative;
     display: inline-block;
+    z-index: 1;
+    white-space: nowrap;
   }
-  .circle-mark__svg {
+  /* 下半分にふわっと敷くマーカー面 */
+  .circle-mark::before {
+    content: '';
     position: absolute;
-    top: -28%;
-    left: -14%;
-    width: 128%;
-    height: 156%;
-    pointer-events: none;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: 0.06em;
+    height: 0.44em;
+    background: rgba(43, 196, 192, 0.26);
     z-index: -1;
-    overflow: visible;
-    transform: rotate(-3deg);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 1px;
+    pointer-events: none;
   }
-  .circle-mark__svg path {
-    fill: none;
-    stroke: var(--teal);
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    /* pathLength=100 で正規化 → 線の長さに依存せず確実に描き切れる */
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    transition: stroke-dashoffset 1.1s cubic-bezier(0.65, 0, 0.35, 1);
-    filter: drop-shadow(0 0 8px rgba(43, 196, 192, 0.55));
+  /* 下端の細いアクセント線（テック感） */
+  .circle-mark::after {
+    content: '';
+    position: absolute;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: 0.02em;
+    height: 2px;
+    background: var(--teal);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+    box-shadow: 0 0 8px rgba(43, 196, 192, 0.55);
+    pointer-events: none;
   }
-  .circle-mark.visible .circle-mark__svg path {
-    stroke-dashoffset: 0;
-    animation: circleMarkGlow 2.4s ease-in-out 1.1s infinite;
+  .circle-mark.visible::before,
+  .circle-mark.visible::after {
+    transform: scaleX(1);
   }
-  @keyframes circleMarkGlow {
-    0%, 100% {
-      filter: drop-shadow(0 0 6px rgba(43, 196, 192, 0.45));
-    }
-    50% {
-      filter: drop-shadow(0 0 14px rgba(43, 196, 192, 0.9)) drop-shadow(0 0 22px rgba(43, 196, 192, 0.5));
-    }
+  /* スクロール中はトランジションを抑制（カクつき防止） */
+  body.is-scrolling .circle-mark::before,
+  body.is-scrolling .circle-mark::after {
+    transition-duration: 0s;
   }
-  body.is-scrolling .circle-mark.visible .circle-mark__svg path { animation-play-state: paused; }
 
   /* ============ スクロール追従フォロワー（左側を上下に追ってくる小さな光） ============ */
   .scroll-follower {
@@ -3365,7 +3372,7 @@
     <div class="hero-content">
       <h1 class="hero-title">
         <span class="line-reveal" style="--d:0.1s"><span class="line-reveal-inner">すべての企業に、</span></span><br>
-        <span class="line-reveal" style="--d:0.4s"><span class="line-reveal-inner"><span class="circle-mark">発信力<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>を。</span></span>
+        <span class="line-reveal" style="--d:0.4s"><span class="line-reveal-inner"><span class="circle-mark">発信力</span>を。</span></span>
       </h1>
       <p class="hero-sub fade-in" data-delay="3">テクノロジーと人の力で、企業の未来をともに創る。</p>
       <a href="#contact" class="btn-primary fade-in" data-delay="4">
@@ -3405,7 +3412,7 @@
   </div>
   <div class="container">
     <span class="section-eyebrow "><span class="label-text">Issue</span></span>
-    <h2 class="problems-title stagger-text">SNSをやっているのに、<span class="circle-mark">成果<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>が出ない。</h2>
+    <h2 class="problems-title stagger-text">SNSをやっているのに、<span class="circle-mark">成果</span>が出ない。</h2>
     <div class="problems-grid">
       <div class="problem-card spotlight reveal reveal-up" data-delay="1">
         <div class="problem-icon">
@@ -3476,7 +3483,7 @@
   </div>
   <div class="container">
     <span class="section-eyebrow "><span class="label-text">Services</span></span>
-    <h2 class="services-title stagger-text">6つの事業で、企業の<span class="circle-mark">成長<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>を支援する。</h2>
+    <h2 class="services-title stagger-text">6つの事業で、企業の<span class="circle-mark">成長</span>を支援する。</h2>
     <div class="services-marquee" id="servicesMarquee">
       <div class="marquee-track">
         <!-- First copy -->
@@ -3580,7 +3587,7 @@
   </div>
   <div class="container">
     <span class="section-eyebrow"><span class="label-text">Numbers</span></span>
-    <h2 class="stats-title stagger-text">数字で見る、<span class="circle-mark">私たち<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>。</h2>
+    <h2 class="stats-title stagger-text">数字で見る、<span class="circle-mark">私たち</span>。</h2>
     <p class="stats-sub reveal reveal-up">— Numbers behind us —</p>
     <div class="stats-grid">
       <div class="stat-card reveal reveal-up" data-delay="1">
@@ -3647,7 +3654,7 @@
   </div>
   <div class="container">
     <span class="section-eyebrow "><span class="label-text">Our Difference</span></span>
-    <h2 class="difference-title stagger-text">代理店との、決定的な<span class="circle-mark">違い<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>。</h2>
+    <h2 class="difference-title stagger-text">代理店との、決定的な<span class="circle-mark">違い</span>。</h2>
     <div class="difference-grid">
       <div class="diff-card spotlight reveal reveal-flip" data-delay="1">
         <div class="diff-icon">
@@ -3712,7 +3719,7 @@
       <span class="section-tag__name">( MEMBERS )</span>
     </div>
     <span class="section-eyebrow"><span class="label-text">Members</span></span>
-    <h2 class="services-title stagger-text">事業を動かす、<span class="circle-mark">人々<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>。</h2>
+    <h2 class="services-title stagger-text">事業を動かす、<span class="circle-mark">人々</span>。</h2>
     <p class="members-intro reveal reveal-up">テクノロジーを軸に、業界を超えて課題に向き合う仲間たち。<br>その想いと専門性で、企業の発信力を形にしています。</p>
     <div class="members-columns reveal">
       <!-- 左列：上→下に流れる（メンバー1, 2） -->
@@ -3766,7 +3773,7 @@
   <p class="statement-body stagger-words">
     投稿の数ではなく、<em>設計の質</em>で<br>
     成果は決まる。<br>
-    その先にある<em>本当の<span class="circle-mark">成長<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span></em>を、<br>
+    その先にある<em>本当の<span class="circle-mark">成長</span></em>を、<br>
     私たちはあなたと共に。
   </p>
   <span class="statement-line reveal reveal-up" data-delay="2"></span>
@@ -3784,7 +3791,7 @@
   </div>
   <div class="container">
     <span class="section-eyebrow "><span class="label-text">Process</span></span>
-    <h2 class="steps-title stagger-text">相談から開始まで、最短<span class="circle-mark">5ステップ<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span>。</h2>
+    <h2 class="steps-title stagger-text">相談から開始まで、最短<span class="circle-mark">5ステップ</span>。</h2>
     <div class="steps-row">
       <div class="step-item reveal reveal-left" data-delay="1">
         <div class="step-circle">01</div>
@@ -3819,7 +3826,7 @@
 <section class="faq">
   <div class="container">
     <span class="section-eyebrow "><span class="label-text">Q &amp; A</span></span>
-    <h2 class="faq-title reveal reveal-up">よくある<span class="circle-mark">ご質問<svg class="circle-mark__svg" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" vector-effect="non-scaling-stroke" d="M 110 8 C 178 6 212 22 208 50 C 206 80 150 92 110 90 C 50 92 14 80 18 48 C 22 22 60 6 110 8 C 132 8 156 14 178 24"/></svg></span></h2>
+    <h2 class="faq-title reveal reveal-up">よくある<span class="circle-mark">ご質問</span></h2>
     <div class="faq-list reveal reveal-skew">
       <div class="faq-item">
         <button class="faq-q"><span>相談や見積りは無料ですか？</span><span class="plus">+</span></button>
@@ -4442,6 +4449,15 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
   fadeEls.forEach(el => observer.observe(el));
+
+  /* === 試作段階：全リンクのクリック動作を無効化（タップしても何も起きない） === */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
 </script>
 
 </body>
