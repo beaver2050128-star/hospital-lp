@@ -108,11 +108,27 @@
     animation: ambientPulse 14s cubic-bezier(0.45, 0, 0.55, 1) infinite;
     will-change: opacity;
   }
-  /* 暗背景に画像を馴染ませる：全画像にダーク系のフィルターを当てる
-     （ロゴはalt属性に "logo" を含むものを除外する目的では完全には機能しないため、
-      個別に上書きしたい場合は class や inline style で対応） */
-  img {
-    filter: brightness(0.62) contrast(1.06) saturate(0.78) hue-rotate(8deg);
+  /* 試作品02：画像フィルター方針
+     全imgにフィルターをかけるとロゴやアイコンまで潰れるので、
+     ヒーロー大型写真（.hero-slide）だけを個別ダーク化する。
+     カード内の写真は元の明るさのままにすることで、視認性を確保。 */
+  /* （旧 img { filter: ... } は撤廃） */
+
+  /* 試作品02：line-reveal / stagger-text 等のスクロール待機要素を強制表示
+     （スクロール監視で is-visible が付かなくてもテキストが消えないように） */
+  .line-reveal,
+  .line-reveal-inner,
+  .stagger-text,
+  .stagger-text > *,
+  .reveal,
+  .reveal-up,
+  .reveal-fade,
+  .hero-title,
+  .hero-sub,
+  .hero-content {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
   }
   @keyframes ambientPulse {
     0%, 100% { opacity: 0.7; }
